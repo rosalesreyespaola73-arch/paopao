@@ -34,3 +34,7 @@ app.use((req, res, next) => {
         message: 'Endpoint not found'
     })
 })
+
+export default app
+
+export default app
