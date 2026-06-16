@@ -2,7 +2,6 @@
 import mysql from 'mysql2/promise';
 import { DB_HOST, DB_USER, DB_PASSWORD, DB_DATABASE, DB_PORT } from './config.js';
 
-// ✅ Exportación por defecto (más fácil)
 const pool = mysql.createPool({
     host: DB_HOST,
     user: DB_USER,
@@ -14,4 +13,8 @@ const pool = mysql.createPool({
     queueLimit: 0
 });
 
-export default pool;  // ← Exportación por defecto
+console.log('✅ Conexión a MySQL configurada');
+console.log(`📊 Base de datos: ${DB_DATABASE}`);
+console.log(`🌐 Host: ${DB_HOST}`);
+
+export default pool;
