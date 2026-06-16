@@ -5,9 +5,11 @@ import db from '../db.js';
 export const getClientes = async (req, res) => {
     try {
         const [rows] = await db.execute('SELECT * FROM clientes');
+        console.log(`📋 Enviando ${rows.length} clientes`);
         res.json(rows);
     } catch (error) {
-        res.status(500).json({ error: error.message });
+        console.error('Error en getClientes:', error);
+        res.status(500).json({ error: 'Error al obtener clientes: ' + error.message });
     }
 };
 
@@ -19,7 +21,8 @@ export const getclientesxid = async (req, res) => {
         }
         res.json(rows[0]);
     } catch (error) {
-        res.status(500).json({ error: error.message });
+        console.error('Error en getclientesxid:', error);
+        res.status(500).json({ error: 'Error al obtener cliente' });
     }
 };
 
@@ -32,7 +35,8 @@ export const postInsertarCliente = async (req, res) => {
         );
         res.status(201).json({ cli_id: result.insertId, message: 'Cliente creado' });
     } catch (error) {
-        res.status(500).json({ error: error.message });
+        console.error('Error en postInsertarCliente:', error);
+        res.status(500).json({ error: 'Error al crear cliente: ' + error.message });
     }
 };
 
@@ -48,7 +52,8 @@ export const putCliente = async (req, res) => {
         }
         res.json({ message: 'Cliente actualizado' });
     } catch (error) {
-        res.status(500).json({ error: error.message });
+        console.error('Error en putCliente:', error);
+        res.status(500).json({ error: 'Error al actualizar cliente: ' + error.message });
     }
 };
 
@@ -64,11 +69,12 @@ export const patchCliente = async (req, res) => {
         }
         res.json({ message: 'Cliente actualizado' });
     } catch (error) {
-        res.status(500).json({ error: error.message });
+        console.error('Error en patchCliente:', error);
+        res.status(500).json({ error: 'Error al actualizar cliente: ' + error.message });
     }
 };
 
-export const deleteCliente = async (req, res) => {  // ← ¡ESTA ES LA QUE FALTA!
+export const deleteCliente = async (req, res) => {
     try {
         const [result] = await db.execute('DELETE FROM clientes WHERE cli_id = ?', [req.params.id]);
         if (result.affectedRows === 0) {
@@ -76,6 +82,7 @@ export const deleteCliente = async (req, res) => {  // ← ¡ESTA ES LA QUE FALT
         }
         res.json({ message: 'Cliente eliminado' });
     } catch (error) {
-        res.status(500).json({ error: error.message });
+        console.error('Error en deleteCliente:', error);
+        res.status(500).json({ error: 'Error al eliminar cliente: ' + error.message });
     }
 };
