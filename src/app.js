@@ -24,6 +24,21 @@ app.use((req, res, next) => {
 
 app.use(express.json());
 
+// Ruta raíz
+app.get('/', (req, res) => {
+    res.json({
+        message: 'API paopao - Tienda con MySQL',
+        version: '1.0.0',
+        status: 'online',
+        endpoints: {
+            clientes: '/api/clientes',
+            productos: '/api/productos',
+            pedidos: '/api/pedidos',
+            usuarios: '/api/usuarios'
+        }
+    });
+});
+
 // Rutas
 app.use('/api', clientesRouter)  
 
