@@ -11,33 +11,7 @@ app.use(cors({
     allowedHeaders: ['Content-Type', 'Authorization', 'Origin', 'X-Requested-With', 'Accept']
 }));
 
-// Middleware adicional para CORS
-app.use((req, res, next) => {
-    res.header('Access-Control-Allow-Origin', '*');
-    res.header('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE, OPTIONS');
-    res.header('Access-Control-Allow-Headers', 'Content-Type, Authorization');
-    if (req.method === 'OPTIONS') {
-        return res.sendStatus(200);
-    }
-    next();
-});
-
 app.use(express.json());
-
-// Ruta raíz
-app.get('/', (req, res) => {
-    res.json({
-        message: 'API paopao - Tienda con MySQL',
-        version: '1.0.0',
-        status: 'online',
-        endpoints: {
-            clientes: '/api/clientes',
-            productos: '/api/productos',
-            pedidos: '/api/pedidos',
-            usuarios: '/api/usuarios'
-        }
-    });
-});
 
 // Rutas
 app.use('/api', clientesRouter)  
