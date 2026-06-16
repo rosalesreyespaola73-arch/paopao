@@ -15,12 +15,12 @@ console.log('✅ Cargando middlewares y rutas...');
 
 app.use(express.json());
 
-// ✅ RUTA DE PRUEBA: Para confirmar que la API está viva desde el navegador
+// Ruta raíz para pruebas en navegador
 app.get('/', (req, res) => {
     res.json({
-        mensaje: "¡API de PAOPAO funcionando correctamente!",
-        estado: "Online",
-        nota: "El frontend (HTML) es independiente y debe consumir estos endpoints."
+        message: "API paopao - Tienda con MySQL",
+        status: "online",
+        note: "Si ves este mensaje, la API está configurada correctamente."
     });
 });
 
@@ -34,5 +34,3 @@ app.use((req, res, next) => {
         message: 'Endpoint not found'
     })
 })
-
-export default app
