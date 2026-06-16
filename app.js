@@ -25,13 +25,30 @@ app.use((req, res, next) => {
 app.use(express.json());
 
 // Rutas
-app.use('/api', clientesRouter)  
+app.use('/api', clientesRouter)
 
-// Manejador 404
+// ✅ AGREGAR RUTA RAÍZ - ¡ESTO ES LO QUE FALTA!
+app.get('/', (req, res) => {
+    res.json({
+        message: '🚀 API de Tienda funcionando correctamente',
+        status: 'online',
+        endpoints: {
+            clientes: '/api/clientes',
+            productos: '/api/productos',
+            pedidos: '/api/pedidos',
+            usuarios: '/api/usuarios'
+        }
+    });
+});
+
+// Manejador 404 (debe ir al final)
 app.use((req, res, next) => {
     res.status(404).json({
         message: 'Endpoint not found'
-    })
+    });
+});
+
+export default app
 })
 
 export default app
