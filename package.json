@@ -2,11 +2,11 @@
   "name": "api2024.2",
   "version": "1.0.0",
   "description": "API para tienda con MySQL",
-  "main": "src/index.js",
+  "main": "index.js",
   "type": "module",
   "scripts": {
-    "dev": "nodemon src/index.js",
-    "start": "node src/index.js"
+    "dev": "nodemon index.js",
+    "start": "node index.js"
   },
   "keywords": [],
   "author": "",
